@@ -1,0 +1,32 @@
+doctype html
+html(lang="ja")
+  head
+    include _inc/pug/head.pug
+
+  body
+    .container.pt3
+      .mb4.pa3.pt0.bg-near-white.br2-ns.ba.b--black-20
+        h1.tc.f6.f4-ns
+          | Youtubeの特定ユーザーの最新動画を取得
+        p.tc.f7.f6-ns
+          | 最新動画を取得したいユーザーのチャンネルURLを入力して「動画データを取得」ボタンをクリックしてください。
+        .cf.form-youtube
+          input#search.input-reset.w-100.w-70-m.w-80-l.br2-ns.br--left-ns.f6.text-search(type="text", name="search", placeholder="https://www.youtube.com/channel/UC_SI1j1d8vJo_rYMV5o_dRg")
+          input#js-btnSearch.button-reset.w-100.w-30-m.w-20-l.br2-ns.br--right-ns.f6.submit-search(type="submit", value="動画データを取得")
+
+        .form-youtube
+          .flex.items-center.mt3
+            label(for="results")
+              | 動画読み込み件数（最大50件）
+
+            select#results.sans-serif.select-results(name="results", value="5")
+              - for(let i = 1; i <= 50; i++)
+                if i === 5
+                  option(value=i, selected) #{i}
+                else
+                  option(value=i) #{i}
+
+      ul#js-youtube.list.flex-ns.flex-wrap-ns.justify-between-ns.list-youtube
+
+    include _inc/pug/scripts.pug
+    script(src="js/main.js")
